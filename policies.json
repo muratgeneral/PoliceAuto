@@ -1,18 +1,1 @@
-[
-  {
-    "id": 1,
-    "policyNumber": "1000408526",
-    "ekNo": "0",
-    "policyType": "Kasko",
-    "isCancelled": false,
-    "startDate": "03/01/2026",
-    "endDate": "03/01/2027",
-    "plateInfo": "26 ACK020",
-    "brand": "FORD/OTOSAN",
-    "model": "TRANSIT TEK K.KAMYONET ECOBLUE 350E TREND",
-    "chassisNo": "NM0DXXTTGDHE68922",
-    "premiumAmount": "31.741,19 TL",
-    "vehicleType": "Ticari",
-    "createdAt": "2026-03-15T14:59:03.274Z"
-  }
-]
+[]

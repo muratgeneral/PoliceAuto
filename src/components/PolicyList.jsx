@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Database, Trash2, Receipt, Calculator } from 'lucide-react';
 import AccountingModal from './AccountingModal';
 import ReceiptModal from './ReceiptModal';
+import { API_BASE_URL } from '../utils/apiConfig';
 
 export default function PolicyList({ filterPlate, embedded }) {
     const [policies, setPolicies] = useState([]);
@@ -11,7 +12,7 @@ export default function PolicyList({ filterPlate, embedded }) {
 
     const fetchPolicies = async () => {
         try {
-            const response = await fetch('/api/policies');
+            const response = await fetch(`${API_BASE_URL}/api/policies`);
             if (response.ok) {
                 const result = await response.json();
                 setPolicies(result.data);
@@ -37,7 +38,7 @@ export default function PolicyList({ filterPlate, embedded }) {
         if (!window.confirm("Bu poliçeyi silmek istediğinize emin misiniz?")) return;
 
         try {
-            const response = await fetch(`/api/policies/${id}`, { method: 'DELETE' });
+            const response = await fetch(`${API_BASE_URL}/api/policies/${id}`, { method: 'DELETE' });
             if (response.ok) {
                 setPolicies(policies.filter(p => p.id !== id));
             }

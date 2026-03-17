@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Layers, Calculator, FileStack } from 'lucide-react';
+import { API_BASE_URL } from '../utils/apiConfig';
 
 export default function BulkReceipt() {
     const [policies, setPolicies] = useState([]);
@@ -14,7 +15,7 @@ export default function BulkReceipt() {
 
     const fetchPolicies = async () => {
         try {
-            const response = await fetch('/api/policies');
+            const response = await fetch(`${API_BASE_URL}/api/policies`);
             if (response.ok) {
                 const result = await response.json();
                 setPolicies(result.data);

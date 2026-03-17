@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CarFront, Trash2, Receipt, Plus } from 'lucide-react';
 import PolicyList from './PolicyList';
+import { API_BASE_URL } from '../utils/apiConfig';
 
 export default function VehicleList() {
     const [vehicles, setVehicles] = useState([]);
@@ -15,7 +16,7 @@ export default function VehicleList() {
 
     const fetchVehicles = async () => {
         try {
-            const response = await fetch('/api/vehicles');
+            const response = await fetch(`${API_BASE_URL}/api/vehicles`);
             if (response.ok) {
                 const result = await response.json();
                 setVehicles(result.data);
@@ -39,7 +40,7 @@ export default function VehicleList() {
         if (!window.confirm("DİKKAT! Bu aracı sildiğinizde, bu araca (plakaya) ait olan TÜM POLİÇELER DE kalıcı olarak SİLİNECEKTİR. Emin misiniz?")) return;
 
         try {
-            const response = await fetch(`/api/vehicles/${id}`, { method: 'DELETE' });
+            const response = await fetch(`${API_BASE_URL}/api/vehicles/${id}`, { method: 'DELETE' });
             if (response.ok) {
                 setVehicles(vehicles.filter(v => v.id !== id));
                 // Dispatch event so policies list updates if the user switches tab
@@ -68,7 +69,7 @@ export default function VehicleList() {
         }
 
         try {
-            const response = await fetch('/api/vehicles', {
+            const response = await fetch(`${API_BASE_URL}/api/vehicles`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newForm)

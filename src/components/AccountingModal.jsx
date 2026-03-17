@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Copy, Download, Save, Check } from 'lucide-react';
+import { API_BASE_URL } from '../utils/apiConfig';
 
 export default function AccountingModal({ policy, onClose }) {
     const [accountingData, setAccountingData] = useState([]);
@@ -539,7 +540,7 @@ export default function AccountingModal({ policy, onClose }) {
         if (!policy || !policy.id) return;
         setIsSaving(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/policies/${policy.id}/accounting`, {
+            const response = await fetch(`${API_BASE_URL}/api/policies/${policy.id}/accounting`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

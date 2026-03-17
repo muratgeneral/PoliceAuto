@@ -1,5 +1,6 @@
 import { Download, Copy, RefreshCw, Save } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../utils/apiConfig';
 
 export default function ResultsForm({ data, rawText, onReset }) {
     if (!data) return null;
@@ -16,7 +17,7 @@ export default function ResultsForm({ data, rawText, onReset }) {
         const checkVehicle = async () => {
             if (!formData.plateInfo || formData.plateInfo === 'Bulunamadı') return;
             try {
-                const response = await fetch('/api/vehicles');
+                const response = await fetch(`${API_BASE_URL}/api/vehicles`);
                 if (response.ok) {
                     const result = await response.json();
                     const vehicles = result.data;
@@ -62,7 +63,7 @@ export default function ResultsForm({ data, rawText, onReset }) {
                 vehicleType
             };
 
-            const response = await fetch('/api/policies', {
+            const response = await fetch(`${API_BASE_URL}/api/policies`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
